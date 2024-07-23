@@ -1,0 +1,1504 @@
+[{
+ "configuration": {
+  "provider_config": {
+   "kubernetes": {
+    "expressions": {
+     "client_certificate": {
+      "references": [
+       "var.client_certificate"
+      ]
+     },
+     "client_key": {
+      "references": [
+       "var.client_key"
+      ]
+     },
+     "cluster_ca_certificate": {
+      "references": [
+       "var.cluster_ca_certificate"
+      ]
+     },
+     "host": {
+      "references": [
+       "var.host"
+      ]
+     }
+    },
+    "full_name": "registry.terraform.io/hashicorp/kubernetes",
+    "name": "kubernetes"
+   }
+  },
+  "root_module": {
+   "resources": [
+    {
+     "address": "kubernetes_deployment.nginx",
+     "expressions": {
+      "metadata": [
+       {
+        "labels": {
+         "constant_value": {
+          "App": "ScalableNginx"
+         }
+        },
+        "name": {
+         "constant_value": "scalable-nginx"
+        }
+       }
+      ],
+      "spec": [
+       {
+        "replicas": {
+         "constant_value": 2
+        },
+        "selector": [
+         {
+          "match_labels": {
+           "constant_value": {
+            "App": "ScalableNginx"
+           }
+          }
+         }
+        ],
+        "template": [
+         {
+          "metadata": [
+           {
+            "labels": {
+             "constant_value": {
+              "App": "ScalableNginx"
+             }
+            }
+           }
+          ],
+          "spec": [
+           {
+            "container": [
+             {
+              "image": {
+               "constant_value": "nginx: 1.7.8"
+              },
+              "name": {
+               "constant_value": "example"
+              },
+              "port": [
+               {
+                "container_port": {
+                 "constant_value": 80
+                }
+               }
+              ],
+              "resources": [
+               {
+                "limits": {
+                 "constant_value": {
+                  "cpu": "0.5",
+                  "memory": "512Mi"
+                 }
+                },
+                "requests": {
+                 "constant_value": {
+                  "cpu": "250m",
+                  "memory": "50Mi"
+                 }
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "wait_for_rollout": {
+       "constant_value": false
+      }
+     },
+     "mode": "managed",
+     "name": "nginx",
+     "provider_config_key": "kubernetes",
+     "schema_version": 1,
+     "type": "kubernetes_deployment"
+    }
+   ],
+   "variables": {
+    "client_certificate": {},
+    "client_key": {},
+    "cluster_ca_certificate": {},
+    "host": {}
+   }
+  }
+ },
+ "errored": false,
+ "format_version": "1.2",
+ "planned_values": {
+  "root_module": {
+   "resources": [
+    {
+     "address": "kubernetes_deployment.nginx",
+     "mode": "managed",
+     "name": "nginx",
+     "provider_name": "registry.terraform.io/hashicorp/kubernetes",
+     "schema_version": 1,
+     "sensitive_values": {
+      "metadata": [
+       {
+        "annotations": {},
+        "labels": {}
+       }
+      ],
+      "spec": [
+       {
+        "selector": [
+         {
+          "match_expressions": [],
+          "match_labels": {}
+         }
+        ],
+        "strategy": [
+         {
+          "rolling_update": [
+           {}
+          ]
+         }
+        ],
+        "template": [
+         {
+          "metadata": [
+           {
+            "annotations": {},
+            "labels": {}
+           }
+          ],
+          "spec": [
+           {
+            "affinity": [],
+            "container": [
+             {
+              "args": [],
+              "command": [],
+              "env": [],
+              "env_from": [],
+              "lifecycle": [],
+              "liveness_probe": [],
+              "port": [
+               {}
+              ],
+              "readiness_probe": [],
+              "resources": [
+               {
+                "limits": {},
+                "requests": {}
+               }
+              ],
+              "security_context": [],
+              "startup_probe": [],
+              "volume_mount": []
+             }
+            ],
+            "dns_config": [],
+            "host_aliases": [],
+            "image_pull_secrets": [],
+            "init_container": [],
+            "node_selector": {},
+            "os": [],
+            "readiness_gate": [],
+            "security_context": [],
+            "toleration": [],
+            "topology_spread_constraint": [],
+            "volume": []
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     "type": "kubernetes_deployment",
+     "values": {
+      "id": "default/scalable-nginx",
+      "metadata": [
+       {
+        "annotations": {},
+        "generate_name": "",
+        "generation": 1,
+        "labels": {
+         "App": "ScalableNginx"
+        },
+        "name": "scalable-nginx",
+        "namespace": "default",
+        "resource_version": "1123",
+        "uid": "db81c31b-a76f-48f6-9708-dd02ea2a8740"
+       }
+      ],
+      "spec": [
+       {
+        "min_ready_seconds": 0,
+        "paused": false,
+        "progress_deadline_seconds": 600,
+        "replicas": "2",
+        "revision_history_limit": 10,
+        "selector": [
+         {
+          "match_expressions": [],
+          "match_labels": {
+           "App": "ScalableNginx"
+          }
+         }
+        ],
+        "strategy": [
+         {
+          "rolling_update": [
+           {
+            "max_surge": "25%",
+            "max_unavailable": "25%"
+           }
+          ],
+          "type": "RollingUpdate"
+         }
+        ],
+        "template": [
+         {
+          "metadata": [
+           {
+            "annotations": {},
+            "generate_name": "",
+            "generation": 0,
+            "labels": {
+             "App": "ScalableNginx"
+            },
+            "name": "",
+            "namespace": "",
+            "resource_version": "",
+            "uid": ""
+           }
+          ],
+          "spec": [
+           {
+            "active_deadline_seconds": 0,
+            "affinity": [],
+            "automount_service_account_token": true,
+            "container": [
+             {
+              "args": [],
+              "command": [],
+              "env": [],
+              "env_from": [],
+              "image": "nginx: 1.7.8",
+              "image_pull_policy": "IfNotPresent",
+              "lifecycle": [],
+              "liveness_probe": [],
+              "name": "example",
+              "port": [
+               {
+                "container_port": 80,
+                "host_ip": "",
+                "host_port": 0,
+                "name": "",
+                "protocol": "TCP"
+               }
+              ],
+              "readiness_probe": [],
+              "resources": [
+               {
+                "limits": {
+                 "cpu": "500m",
+                 "memory": "512Mi"
+                },
+                "requests": {
+                 "cpu": "250m",
+                 "memory": "50Mi"
+                }
+               }
+              ],
+              "security_context": [],
+              "startup_probe": [],
+              "stdin": false,
+              "stdin_once": false,
+              "termination_message_path": "/dev/termination-log",
+              "termination_message_policy": "File",
+              "tty": false,
+              "volume_mount": [],
+              "working_dir": ""
+             }
+            ],
+            "dns_config": [],
+            "dns_policy": "ClusterFirst",
+            "enable_service_links": true,
+            "host_aliases": [],
+            "host_ipc": false,
+            "host_network": false,
+            "host_pid": false,
+            "hostname": "",
+            "image_pull_secrets": [],
+            "init_container": [],
+            "node_name": "",
+            "node_selector": {},
+            "os": [],
+            "priority_class_name": "",
+            "readiness_gate": [],
+            "restart_policy": "Always",
+            "runtime_class_name": "",
+            "scheduler_name": "default-scheduler",
+            "security_context": [],
+            "service_account_name": "",
+            "share_process_namespace": false,
+            "subdomain": "",
+            "termination_grace_period_seconds": 30,
+            "toleration": [],
+            "topology_spread_constraint": [],
+            "volume": []
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "timeouts": null,
+      "wait_for_rollout": false
+     }
+    }
+   ]
+  }
+ },
+ "prior_state": {
+  "format_version": "1.0",
+  "terraform_version": "1.7.3",
+  "values": {
+   "root_module": {
+    "resources": [
+     {
+      "address": "kubernetes_deployment.nginx",
+      "mode": "managed",
+      "name": "nginx",
+      "provider_name": "registry.terraform.io/hashicorp/kubernetes",
+      "schema_version": 1,
+      "sensitive_values": {
+       "metadata": [
+        {
+         "annotations": {},
+         "labels": {}
+        }
+       ],
+       "spec": [
+        {
+         "selector": [
+          {
+           "match_expressions": [],
+           "match_labels": {}
+          }
+         ],
+         "strategy": [
+          {
+           "rolling_update": [
+            {}
+           ]
+          }
+         ],
+         "template": [
+          {
+           "metadata": [
+            {
+             "annotations": {},
+             "labels": {}
+            }
+           ],
+           "spec": [
+            {
+             "affinity": [],
+             "container": [
+              {
+               "args": [],
+               "command": [],
+               "env": [],
+               "env_from": [],
+               "lifecycle": [],
+               "liveness_probe": [],
+               "port": [
+                {}
+               ],
+               "readiness_probe": [],
+               "resources": [
+                {
+                 "limits": {},
+                 "requests": {}
+                }
+               ],
+               "security_context": [],
+               "startup_probe": [],
+               "volume_mount": []
+              }
+             ],
+             "dns_config": [],
+             "host_aliases": [],
+             "image_pull_secrets": [],
+             "init_container": [],
+             "node_selector": {},
+             "os": [],
+             "readiness_gate": [],
+             "security_context": [],
+             "toleration": [],
+             "topology_spread_constraint": [],
+             "volume": []
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "type": "kubernetes_deployment",
+      "values": {
+       "id": "default/scalable-nginx",
+       "metadata": [
+        {
+         "annotations": {},
+         "generate_name": "",
+         "generation": 1,
+         "labels": {
+          "App": "ScalableNginx"
+         },
+         "name": "scalable-nginx",
+         "namespace": "default",
+         "resource_version": "1123",
+         "uid": "db81c31b-a76f-48f6-9708-dd02ea2a8740"
+        }
+       ],
+       "spec": [
+        {
+         "min_ready_seconds": 0,
+         "paused": false,
+         "progress_deadline_seconds": 600,
+         "replicas": "2",
+         "revision_history_limit": 10,
+         "selector": [
+          {
+           "match_expressions": [],
+           "match_labels": {
+            "App": "ScalableNginx"
+           }
+          }
+         ],
+         "strategy": [
+          {
+           "rolling_update": [
+            {
+             "max_surge": "25%",
+             "max_unavailable": "25%"
+            }
+           ],
+           "type": "RollingUpdate"
+          }
+         ],
+         "template": [
+          {
+           "metadata": [
+            {
+             "annotations": {},
+             "generate_name": "",
+             "generation": 0,
+             "labels": {
+              "App": "ScalableNginx"
+             },
+             "name": "",
+             "namespace": "",
+             "resource_version": "",
+             "uid": ""
+            }
+           ],
+           "spec": [
+            {
+             "active_deadline_seconds": 0,
+             "affinity": [],
+             "automount_service_account_token": true,
+             "container": [
+              {
+               "args": [],
+               "command": [],
+               "env": [],
+               "env_from": [],
+               "image": "nginx: 1.7.8",
+               "image_pull_policy": "IfNotPresent",
+               "lifecycle": [],
+               "liveness_probe": [],
+               "name": "example",
+               "port": [
+                {
+                 "container_port": 80,
+                 "host_ip": "",
+                 "host_port": 0,
+                 "name": "",
+                 "protocol": "TCP"
+                }
+               ],
+               "readiness_probe": [],
+               "resources": [
+                {
+                 "limits": {
+                  "cpu": "500m",
+                  "memory": "512Mi"
+                 },
+                 "requests": {
+                  "cpu": "250m",
+                  "memory": "50Mi"
+                 }
+                }
+               ],
+               "security_context": [],
+               "startup_probe": [],
+               "stdin": false,
+               "stdin_once": false,
+               "termination_message_path": "/dev/termination-log",
+               "termination_message_policy": "File",
+               "tty": false,
+               "volume_mount": [],
+               "working_dir": ""
+              }
+             ],
+             "dns_config": [],
+             "dns_policy": "ClusterFirst",
+             "enable_service_links": true,
+             "host_aliases": [],
+             "host_ipc": false,
+             "host_network": false,
+             "host_pid": false,
+             "hostname": "",
+             "image_pull_secrets": [],
+             "init_container": [],
+             "node_name": "",
+             "node_selector": {},
+             "os": [],
+             "priority_class_name": "",
+             "readiness_gate": [],
+             "restart_policy": "Always",
+             "runtime_class_name": "",
+             "scheduler_name": "default-scheduler",
+             "security_context": [],
+             "service_account_name": "",
+             "share_process_namespace": false,
+             "subdomain": "",
+             "termination_grace_period_seconds": 30,
+             "toleration": [],
+             "topology_spread_constraint": [],
+             "volume": []
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "timeouts": null,
+       "wait_for_rollout": false
+      }
+     }
+    ]
+   }
+  }
+ },
+ "resource_changes": [
+  {
+   "address": "kubernetes_deployment.nginx",
+   "change": {
+    "actions": [
+     "no-op"
+    ],
+    "after": {
+     "id": "default/scalable-nginx",
+     "metadata": [
+      {
+       "annotations": {},
+       "generate_name": "",
+       "generation": 1,
+       "labels": {
+        "App": "ScalableNginx"
+       },
+       "name": "scalable-nginx",
+       "namespace": "default",
+       "resource_version": "1123",
+       "uid": "db81c31b-a76f-48f6-9708-dd02ea2a8740"
+      }
+     ],
+     "spec": [
+      {
+       "min_ready_seconds": 0,
+       "paused": false,
+       "progress_deadline_seconds": 600,
+       "replicas": "2",
+       "revision_history_limit": 10,
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {
+          "App": "ScalableNginx"
+         }
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {
+           "max_surge": "25%",
+           "max_unavailable": "25%"
+          }
+         ],
+         "type": "RollingUpdate"
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "annotations": {},
+           "generate_name": "",
+           "generation": 0,
+           "labels": {
+            "App": "ScalableNginx"
+           },
+           "name": "",
+           "namespace": "",
+           "resource_version": "",
+           "uid": ""
+          }
+         ],
+         "spec": [
+          {
+           "active_deadline_seconds": 0,
+           "affinity": [],
+           "automount_service_account_token": true,
+           "container": [
+            {
+             "args": [],
+             "command": [],
+             "env": [],
+             "env_from": [],
+             "image": "nginx: 1.7.8",
+             "image_pull_policy": "IfNotPresent",
+             "lifecycle": [],
+             "liveness_probe": [],
+             "name": "example",
+             "port": [
+              {
+               "container_port": 80,
+               "host_ip": "",
+               "host_port": 0,
+               "name": "",
+               "protocol": "TCP"
+              }
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+               },
+               "requests": {
+                "cpu": "250m",
+                "memory": "50Mi"
+               }
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "stdin": false,
+             "stdin_once": false,
+             "termination_message_path": "/dev/termination-log",
+             "termination_message_policy": "File",
+             "tty": false,
+             "volume_mount": [],
+             "working_dir": ""
+            }
+           ],
+           "dns_config": [],
+           "dns_policy": "ClusterFirst",
+           "enable_service_links": true,
+           "host_aliases": [],
+           "host_ipc": false,
+           "host_network": false,
+           "host_pid": false,
+           "hostname": "",
+           "image_pull_secrets": [],
+           "init_container": [],
+           "node_name": "",
+           "node_selector": {},
+           "os": [],
+           "priority_class_name": "",
+           "readiness_gate": [],
+           "restart_policy": "Always",
+           "runtime_class_name": "",
+           "scheduler_name": "default-scheduler",
+           "security_context": [],
+           "service_account_name": "",
+           "share_process_namespace": false,
+           "subdomain": "",
+           "termination_grace_period_seconds": 30,
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "timeouts": null,
+     "wait_for_rollout": false
+    },
+    "after_sensitive": {
+     "metadata": [
+      {
+       "annotations": {},
+       "labels": {}
+      }
+     ],
+     "spec": [
+      {
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {}
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {}
+         ]
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "annotations": {},
+           "labels": {}
+          }
+         ],
+         "spec": [
+          {
+           "affinity": [],
+           "container": [
+            {
+             "args": [],
+             "command": [],
+             "env": [],
+             "env_from": [],
+             "lifecycle": [],
+             "liveness_probe": [],
+             "port": [
+              {}
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {},
+               "requests": {}
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "volume_mount": []
+            }
+           ],
+           "dns_config": [],
+           "host_aliases": [],
+           "image_pull_secrets": [],
+           "init_container": [],
+           "node_selector": {},
+           "os": [],
+           "readiness_gate": [],
+           "security_context": [],
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "after_unknown": {},
+    "before": {
+     "id": "default/scalable-nginx",
+     "metadata": [
+      {
+       "annotations": {},
+       "generate_name": "",
+       "generation": 1,
+       "labels": {
+        "App": "ScalableNginx"
+       },
+       "name": "scalable-nginx",
+       "namespace": "default",
+       "resource_version": "1123",
+       "uid": "db81c31b-a76f-48f6-9708-dd02ea2a8740"
+      }
+     ],
+     "spec": [
+      {
+       "min_ready_seconds": 0,
+       "paused": false,
+       "progress_deadline_seconds": 600,
+       "replicas": "2",
+       "revision_history_limit": 10,
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {
+          "App": "ScalableNginx"
+         }
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {
+           "max_surge": "25%",
+           "max_unavailable": "25%"
+          }
+         ],
+         "type": "RollingUpdate"
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "annotations": {},
+           "generate_name": "",
+           "generation": 0,
+           "labels": {
+            "App": "ScalableNginx"
+           },
+           "name": "",
+           "namespace": "",
+           "resource_version": "",
+           "uid": ""
+          }
+         ],
+         "spec": [
+          {
+           "active_deadline_seconds": 0,
+           "affinity": [],
+           "automount_service_account_token": true,
+           "container": [
+            {
+             "args": [],
+             "command": [],
+             "env": [],
+             "env_from": [],
+             "image": "nginx: 1.7.8",
+             "image_pull_policy": "IfNotPresent",
+             "lifecycle": [],
+             "liveness_probe": [],
+             "name": "example",
+             "port": [
+              {
+               "container_port": 80,
+               "host_ip": "",
+               "host_port": 0,
+               "name": "",
+               "protocol": "TCP"
+              }
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+               },
+               "requests": {
+                "cpu": "250m",
+                "memory": "50Mi"
+               }
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "stdin": false,
+             "stdin_once": false,
+             "termination_message_path": "/dev/termination-log",
+             "termination_message_policy": "File",
+             "tty": false,
+             "volume_mount": [],
+             "working_dir": ""
+            }
+           ],
+           "dns_config": [],
+           "dns_policy": "ClusterFirst",
+           "enable_service_links": true,
+           "host_aliases": [],
+           "host_ipc": false,
+           "host_network": false,
+           "host_pid": false,
+           "hostname": "",
+           "image_pull_secrets": [],
+           "init_container": [],
+           "node_name": "",
+           "node_selector": {},
+           "os": [],
+           "priority_class_name": "",
+           "readiness_gate": [],
+           "restart_policy": "Always",
+           "runtime_class_name": "",
+           "scheduler_name": "default-scheduler",
+           "security_context": [],
+           "service_account_name": "",
+           "share_process_namespace": false,
+           "subdomain": "",
+           "termination_grace_period_seconds": 30,
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "timeouts": null,
+     "wait_for_rollout": false
+    },
+    "before_sensitive": {
+     "metadata": [
+      {
+       "annotations": {},
+       "labels": {}
+      }
+     ],
+     "spec": [
+      {
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {}
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {}
+         ]
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "annotations": {},
+           "labels": {}
+          }
+         ],
+         "spec": [
+          {
+           "affinity": [],
+           "container": [
+            {
+             "args": [],
+             "command": [],
+             "env": [],
+             "env_from": [],
+             "lifecycle": [],
+             "liveness_probe": [],
+             "port": [
+              {}
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {},
+               "requests": {}
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "volume_mount": []
+            }
+           ],
+           "dns_config": [],
+           "host_aliases": [],
+           "image_pull_secrets": [],
+           "init_container": [],
+           "node_selector": {},
+           "os": [],
+           "readiness_gate": [],
+           "security_context": [],
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "mode": "managed",
+   "name": "nginx",
+   "provider_name": "registry.terraform.io/hashicorp/kubernetes",
+   "type": "kubernetes_deployment"
+  }
+ ],
+ "resource_drift": [
+  {
+   "address": "kubernetes_deployment.nginx",
+   "change": {
+    "actions": [
+     "update"
+    ],
+    "after": {
+     "id": "default/scalable-nginx",
+     "metadata": [
+      {
+       "annotations": {},
+       "generate_name": "",
+       "generation": 1,
+       "labels": {
+        "App": "ScalableNginx"
+       },
+       "name": "scalable-nginx",
+       "namespace": "default",
+       "resource_version": "1123",
+       "uid": "db81c31b-a76f-48f6-9708-dd02ea2a8740"
+      }
+     ],
+     "spec": [
+      {
+       "min_ready_seconds": 0,
+       "paused": false,
+       "progress_deadline_seconds": 600,
+       "replicas": "2",
+       "revision_history_limit": 10,
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {
+          "App": "ScalableNginx"
+         }
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {
+           "max_surge": "25%",
+           "max_unavailable": "25%"
+          }
+         ],
+         "type": "RollingUpdate"
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "annotations": {},
+           "generate_name": "",
+           "generation": 0,
+           "labels": {
+            "App": "ScalableNginx"
+           },
+           "name": "",
+           "namespace": "",
+           "resource_version": "",
+           "uid": ""
+          }
+         ],
+         "spec": [
+          {
+           "active_deadline_seconds": 0,
+           "affinity": [],
+           "automount_service_account_token": true,
+           "container": [
+            {
+             "args": [],
+             "command": [],
+             "env": [],
+             "env_from": [],
+             "image": "nginx: 1.7.8",
+             "image_pull_policy": "IfNotPresent",
+             "lifecycle": [],
+             "liveness_probe": [],
+             "name": "example",
+             "port": [
+              {
+               "container_port": 80,
+               "host_ip": "",
+               "host_port": 0,
+               "name": "",
+               "protocol": "TCP"
+              }
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+               },
+               "requests": {
+                "cpu": "250m",
+                "memory": "50Mi"
+               }
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "stdin": false,
+             "stdin_once": false,
+             "termination_message_path": "/dev/termination-log",
+             "termination_message_policy": "File",
+             "tty": false,
+             "volume_mount": [],
+             "working_dir": ""
+            }
+           ],
+           "dns_config": [],
+           "dns_policy": "ClusterFirst",
+           "enable_service_links": true,
+           "host_aliases": [],
+           "host_ipc": false,
+           "host_network": false,
+           "host_pid": false,
+           "hostname": "",
+           "image_pull_secrets": [],
+           "init_container": [],
+           "node_name": "",
+           "node_selector": {},
+           "os": [],
+           "priority_class_name": "",
+           "readiness_gate": [],
+           "restart_policy": "Always",
+           "runtime_class_name": "",
+           "scheduler_name": "default-scheduler",
+           "security_context": [],
+           "service_account_name": "",
+           "share_process_namespace": false,
+           "subdomain": "",
+           "termination_grace_period_seconds": 30,
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "timeouts": null,
+     "wait_for_rollout": false
+    },
+    "after_sensitive": {
+     "metadata": [
+      {
+       "annotations": {},
+       "labels": {}
+      }
+     ],
+     "spec": [
+      {
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {}
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {}
+         ]
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "annotations": {},
+           "labels": {}
+          }
+         ],
+         "spec": [
+          {
+           "affinity": [],
+           "container": [
+            {
+             "args": [],
+             "command": [],
+             "env": [],
+             "env_from": [],
+             "lifecycle": [],
+             "liveness_probe": [],
+             "port": [
+              {}
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {},
+               "requests": {}
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "volume_mount": []
+            }
+           ],
+           "dns_config": [],
+           "host_aliases": [],
+           "image_pull_secrets": [],
+           "init_container": [],
+           "node_selector": {},
+           "os": [],
+           "readiness_gate": [],
+           "security_context": [],
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "after_unknown": {},
+    "before": {
+     "id": "default/scalable-nginx",
+     "metadata": [
+      {
+       "annotations": null,
+       "generate_name": "",
+       "generation": 1,
+       "labels": {
+        "App": "ScalableNginx"
+       },
+       "name": "scalable-nginx",
+       "namespace": "default",
+       "resource_version": "1110",
+       "uid": "db81c31b-a76f-48f6-9708-dd02ea2a8740"
+      }
+     ],
+     "spec": [
+      {
+       "min_ready_seconds": 0,
+       "paused": false,
+       "progress_deadline_seconds": 600,
+       "replicas": "2",
+       "revision_history_limit": 10,
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {
+          "App": "ScalableNginx"
+         }
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {
+           "max_surge": "25%",
+           "max_unavailable": "25%"
+          }
+         ],
+         "type": "RollingUpdate"
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "annotations": null,
+           "generate_name": "",
+           "generation": 0,
+           "labels": {
+            "App": "ScalableNginx"
+           },
+           "name": "",
+           "namespace": "",
+           "resource_version": "",
+           "uid": ""
+          }
+         ],
+         "spec": [
+          {
+           "active_deadline_seconds": 0,
+           "affinity": [],
+           "automount_service_account_token": true,
+           "container": [
+            {
+             "args": null,
+             "command": null,
+             "env": [],
+             "env_from": [],
+             "image": "nginx: 1.7.8",
+             "image_pull_policy": "IfNotPresent",
+             "lifecycle": [],
+             "liveness_probe": [],
+             "name": "example",
+             "port": [
+              {
+               "container_port": 80,
+               "host_ip": "",
+               "host_port": 0,
+               "name": "",
+               "protocol": "TCP"
+              }
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+               },
+               "requests": {
+                "cpu": "250m",
+                "memory": "50Mi"
+               }
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "stdin": false,
+             "stdin_once": false,
+             "termination_message_path": "/dev/termination-log",
+             "termination_message_policy": "File",
+             "tty": false,
+             "volume_mount": [],
+             "working_dir": ""
+            }
+           ],
+           "dns_config": [],
+           "dns_policy": "ClusterFirst",
+           "enable_service_links": true,
+           "host_aliases": [],
+           "host_ipc": false,
+           "host_network": false,
+           "host_pid": false,
+           "hostname": "",
+           "image_pull_secrets": [],
+           "init_container": [],
+           "node_name": "",
+           "node_selector": null,
+           "os": [],
+           "priority_class_name": "",
+           "readiness_gate": [],
+           "restart_policy": "Always",
+           "runtime_class_name": "",
+           "scheduler_name": "default-scheduler",
+           "security_context": [],
+           "service_account_name": "",
+           "share_process_namespace": false,
+           "subdomain": "",
+           "termination_grace_period_seconds": 30,
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "timeouts": null,
+     "wait_for_rollout": false
+    },
+    "before_sensitive": {
+     "metadata": [
+      {
+       "labels": {}
+      }
+     ],
+     "spec": [
+      {
+       "selector": [
+        {
+         "match_expressions": [],
+         "match_labels": {}
+        }
+       ],
+       "strategy": [
+        {
+         "rolling_update": [
+          {}
+         ]
+        }
+       ],
+       "template": [
+        {
+         "metadata": [
+          {
+           "labels": {}
+          }
+         ],
+         "spec": [
+          {
+           "affinity": [],
+           "container": [
+            {
+             "env": [],
+             "env_from": [],
+             "lifecycle": [],
+             "liveness_probe": [],
+             "port": [
+              {}
+             ],
+             "readiness_probe": [],
+             "resources": [
+              {
+               "limits": {},
+               "requests": {}
+              }
+             ],
+             "security_context": [],
+             "startup_probe": [],
+             "volume_mount": []
+            }
+           ],
+           "dns_config": [],
+           "host_aliases": [],
+           "image_pull_secrets": [],
+           "init_container": [],
+           "os": [],
+           "readiness_gate": [],
+           "security_context": [],
+           "toleration": [],
+           "topology_spread_constraint": [],
+           "volume": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "mode": "managed",
+   "name": "nginx",
+   "provider_name": "registry.terraform.io/hashicorp/kubernetes",
+   "type": "kubernetes_deployment"
+  }
+ ],
+ "terraform_version": "1.7.3",
+ "timestamp": "2024-07-23T12:14:56Z",
+ "variables": {
+  "client_certificate": {
+   "value": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJrVENDQVRlZ0F3SUJBZ0lJSTJxQS9qNVlxZVV3Q2dZSUtvWkl6ajBFQXdJd0l6RWhNQjhHQTFVRUF3d1kKYXpOekxXTnNhV1Z1ZEMxallVQXhOekl4TXprek1USTRNQjRYRFRJME1EY3hPVEV5TkRVeU9Gb1hEVEkxTURjeApPVEV5TkRVeU9Gb3dNREVYTUJVR0ExVUVDaE1PYzNsemRHVnRPbTFoYzNSbGNuTXhGVEFUQmdOVkJBTVRESE41CmMzUmxiVHBoWkcxcGJqQlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJBV2ZpMk5udFozSkg1NnUKaGJhVE5QWlNSSUd6OHY1MXRxSU0rdG0zOEJEKytESXg3d2xKWEJGbzZ1R3MyM2J0Sy9zOG1aMUtlejBkd3N3VQp4OWxTVjVDalNEQkdNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBakFmCkJnTlZIU01FR0RBV2dCUytQazBqSjhZeGNkUkRnaUt3MHcxL25NcW5FekFLQmdncWhrak9QUVFEQWdOSUFEQkYKQWlBZ2t6UE05WllxaEE1VFRGZCs1MENJOTQ2S211NGk3c2wxejlvbUtoZ3N0d0loQUpicEp1VmloMU9Fd2c2Vgoza1p4c0dIMHY4THI4TW9Qbit4VTBhVjNna1oyCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkekNDQVIyZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQWpNU0V3SHdZRFZRUUREQmhyTTNNdFkyeHAKWlc1MExXTmhRREUzTWpFek9UTXhNamd3SGhjTk1qUXdOekU1TVRJME5USTRXaGNOTXpRd056RTNNVEkwTlRJNApXakFqTVNFd0h3WURWUVFEREJock0zTXRZMnhwWlc1MExXTmhRREUzTWpFek9UTXhNamd3V1RBVEJnY3Foa2pPClBRSUJCZ2dxaGtqT1BRTUJCd05DQUFUZVdaeXZUSVh5Q2J4SCs0Umc0WEgzYWNhUlp1UW00R2RGZDZVSFo1dkQKU0kzQWhLVXZkUUhSeDduRGVRdXFuRlgwMkFSM1gxS1BMbzd1MHAwTVkwWExvMEl3UURBT0JnTlZIUThCQWY4RQpCQU1DQXFRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVXZqNU5JeWZHTVhIVVE0SWlzTk1OCmY1ektweE13Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUloQUlCTjIzdUEzbTFpN2VVNFljc1NkYk5HOUUxcyt0MEkKR3gwNzJlemFBcGFjQWlBV1lHY3V4S2J3d3pRUHVud01LaEl3TlY3UlYwNmF5amd6UzQwL0hFcldGZz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+  },
+  "client_key": {
+   "value": "LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSU9wUzN2YWNCb1R6azJKV2xVdkMzc0M0QTk3UStBZFVkaDVhR1gxbjQ1RE5vQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFQlorTFkyZTFuY2tmbnE2RnRwTTA5bEpFZ2JQeS9uVzJvZ3o2MmJmd0VQNzRNakh2Q1VsYwpFV2pxNGF6YmR1MHIrenlablVwN1BSM0N6QlRIMlZKWGtBPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo="
+  },
+  "cluster_ca_certificate": {
+   "value": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkakNDQVIyZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQWpNU0V3SHdZRFZRUUREQmhyTTNNdGMyVnkKZG1WeUxXTmhRREUzTWpFek9UTXhNamd3SGhjTk1qUXdOekU1TVRJME5USTRXaGNOTXpRd056RTNNVEkwTlRJNApXakFqTVNFd0h3WURWUVFEREJock0zTXRjMlZ5ZG1WeUxXTmhRREUzTWpFek9UTXhNamd3V1RBVEJnY3Foa2pPClBRSUJCZ2dxaGtqT1BRTUJCd05DQUFRcGo2dEJWNFJESHpiUDdvRHdzY0cvWnpESWtMNVA3aXJOSXpYVEJjRVMKYU84d3RpL2FzV1NNN0MvTE5HdjlGT0ZNcFVteER3T21Uc0hBeW5SWWJtMFJvMEl3UURBT0JnTlZIUThCQWY4RQpCQU1DQXFRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVWpOY3NRUkllR205MElybm9aMnJECmtvcXZVbFF3Q2dZSUtvWkl6ajBFQXdJRFJ3QXdSQUlnRmxndFhIK1BiOHpsVmRPN2g0N3dyUGlRY2k5MW1KMVoKa0l6Vmh4Mkp1NHdDSUg3SEVaUG04blZwdnlQSEw1Tm1ueDdlY3M0Ymdxa2cyNURnYkhraXJZR1QKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+  },
+  "host": {
+   "value": "https://127.0.0.1:6443"
+  }
+ }
+}]

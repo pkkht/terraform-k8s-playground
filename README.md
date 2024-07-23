@@ -20,3 +20,15 @@ The most important learning is wait_for_rollout attribute in main.tf file. Initi
 
 The below excerpt is from Hashicorp doc for the wait_for_rollout attribute:
 The wait_for_rollout attribute is available on both the kubernetes_deployment and the kubernetes_stateful_set resources. The default value for wait_for_rollout is true, so if that’s the behavior you want, you don’t need to do anything. However, there are cases where you may not expect a rollout to complete before you’re finished applying your Kubernetes configuration. In these cases, you can set wait_for_rollout to false and the Kubernetes provider will move on after the Deployment or StatefulSet have been successfully submitted to Kubernetes.
+
+--------------------
+I have attempted to use Pluralith to generate tf graph but not successful in Mac
+https://docs.pluralith.com/docs/get-started/run-locally
+
+See the GitHub link:
+https://github.com/Pluralith/pluralith-cli/issues/131
+
+I have done upto the step of renaming the file with hyphen instead of underscore.
+But when I try to run Pluralith version, the computer says that the software is malicious and to contact the developer. Hmmmmmm!
+
+-----------------------------------
